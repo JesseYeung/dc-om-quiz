@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<title>数据中心运维（高级）工程师 · 考前刷题</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a8a'/%3E%3Ctext x='32' y='42' font-size='28' text-anchor='middle' fill='white' font-family='serif'%3E算%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#eef2f7; --card:#fff; --ink:#0f172a; --muted:#64748b;
+  --blue:#1d4ed8; --blue-d:#1e3a8a; --line:#e2e8f0;
+  --green:#15803d; --green-bg:#dcfce7; --green-line:#86efac;
+  --red:#b91c1c; --red-bg:#fee2e2; --red-line:#fca5a5;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.6}
+header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#fff;padding:16px 16px 0;position:sticky;top:0;z-index:10;box-shadow:0 4px 14px rgba(15,23,42,.18)}
+.head-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;max-width:760px;margin:0 auto}
+h1{font-size:18.5px;margin:0;font-weight:700;letter-spacing:.5px}
+.brand p{margin:4px 0 0;font-size:12px;color:#c7d2fe}
+.mini{text-align:right;flex:0 0 auto}
+.mini-num{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.mini-num span{font-size:12px;color:#c7d2fe;font-weight:400}
+.mini-lab{font-size:11px;color:#c7d2fe;white-space:nowrap}
+.mini-lab b{color:#fff}
+.tabs{display:flex;gap:4px;max-width:760px;margin:14px auto 0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:0;background:transparent;color:#c7d2fe;font-size:14px;padding:9px 14px;border-radius:10px 10px 0 0;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:inherit}
+.tab.active{background:var(--bg);color:var(--blue-d);font-weight:700}
+.dot{background:#ef4444;color:#fff;border-radius:99px;font-size:10px;min-width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;font-weight:700}
+main{max-width:760px;margin:0 auto;padding:14px 14px calc(30px + env(safe-area-inset-bottom))}
+.panel{display:none}
+.panel.active{display:block}
+.toolbar{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip-row{display:flex;gap:4px;background:#e2e8f2;padding:4px;border-radius:11px}
+.chip{border:0;background:transparent;color:#475569;font-size:13px;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:600;font-family:inherit}
+.chip.active{background:#fff;color:var(--blue-d);box-shadow:0 1px 2px rgba(15,23,42,.14)}
+.progress{height:6px;border-radius:99px;background:#dbe3ee;margin:2px 2px 12px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3b82f6,#22c55e);border-radius:99px;transition:width .25s}
+.qcard{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.08);padding:18px 16px 16px}
+.qmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;padding:2.5px 9px;border-radius:99px;font-weight:700;letter-spacing:.3px}
+.badge.single{background:#dbeafe;color:#1d4ed8}
+.badge.multi{background:#ede9fe;color:#6d28d9}
+.badge.judge{background:#ccfbf1;color:#0f766e}
+.badge.src{background:#f1f5f9;color:#64748b;font-weight:500}
+.badge.wrongtag{background:#fee2e2;color:#b91c1c;font-weight:600}
+.qidx{margin-left:auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.stem{font-size:17px;font-weight:600;line-height:1.72;margin:4px 0 16px;white-space:pre-wrap;word-break:break-word}
+.hint{font-size:12px;color:#7c3aed;margin:-8px 0 12px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15.5px;color:var(--ink);margin-bottom:9px;cursor:pointer;transition:border-color .15s,background .15s;align-items:flex-start;font-family:inherit;line-height:1.6}
+.opt:active{transform:scale(.995)}
+.opt .letter{flex:0 0 25px;height:25px;border-radius:8px;background:#f1f5f9;color:#475569;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.opt .content{flex:1;min-width:0;word-break:break-word}
+.opt.sel{border-color:var(--blue);background:#eff6ff}
+.opt.sel .letter{background:var(--blue);color:#fff}
+.opt.correct{border-color:var(--green-line);background:var(--green-bg)}
+.opt.correct .letter{background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red-line);background:var(--red-bg)}
+.opt.wrong .letter{background:var(--red);color:#fff}
+.opt.dim{opacity:.55}
+.opt[disabled]{cursor:default}
+.judge-opt{align-items:center}
+.judge-opt .letter{border-radius:99px}
+.confirm{margin:2px 0 10px}
+.feedback{margin-top:8px;border-radius:12px;padding:13px 14px;font-size:14px;line-height:1.72;background:#f8fafc;border-left:4px solid var(--blue);animation:rise .18s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.feedback.ok{border-left-color:var(--green);background:#f0fdf4}
+.feedback.bad{border-left-color:var(--red);background:#fef2f2}
+.fb-title{font-weight:700;margin-bottom:5px}
+.fb-title.ok{color:var(--green)}
+.fb-title.bad{color:var(--red)}
+.fb-exp{color:#334155;word-break:break-word;white-space:pre-wrap}
+.fb-redo{margin-top:8px}
+.fb-redo a{font-size:12.5px;color:var(--blue);text-decoration:none;border-bottom:1px dashed #93c5fd}
+.actions{display:flex;gap:10px;margin-top:15px}
+.btn{border:0;border-radius:11px;padding:12px 16px;font-size:15px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff;flex:1;font-family:inherit}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:#eef2ff;color:var(--blue-d)}
+.btn.danger{background:#fee2e2;color:#b91c1c}
+.empty{background:var(--card);border-radius:14px;padding:36px 18px;text-align:center;color:var(--muted);font-size:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);line-height:1.8}
+.wrong-head{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);padding:14px;border-radius:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.wrong-head strong{font-size:15px}
+.wrong-head p{margin:3px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
+.wrong-head .btn{flex:0 0 auto;padding:10px 14px;font-size:13.5px}
+.wrong-item{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:center;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+.wi-main{flex:1;min-width:0;cursor:pointer}
+.wi-stem{font-size:14px;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.55}
+.wi-meta{font-size:11.5px;color:var(--muted);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.wi-meta .x{color:#b91c1c}
+.wi-meta .v{color:#15803d}
+.wrong-item .go{flex:0 0 auto;border:0;background:#eef2ff;color:var(--blue-d);font-weight:700;font-size:13px;padding:8px 14px;border-radius:9px;cursor:pointer;font-family:inherit}
+.note{font-size:13px;color:#334155;background:#eff6ff;border-left:4px solid #3b82f6;padding:10px 12px;border-radius:10px;margin-bottom:12px;line-height:1.65}
+.subj{background:var(--card);border-radius:14px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.subj-head{width:100%;display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:13px 14px;text-align:left;cursor:pointer;font-family:inherit}
+.stars{color:#f59e0b;font-size:11px;letter-spacing:1px;flex:0 0 auto}
+.subj-head b{font-size:13px;color:var(--blue-d);flex:0 0 auto}
+.subj-title{font-size:13.5px;font-weight:600;flex:1;min-width:0;line-height:1.45}
+.chev{font-style:normal;color:var(--muted);transition:transform .2s;flex:0 0 auto}
+.subj.open .chev{transform:rotate(180deg)}
+.subj-body{display:none;padding:2px 14px 14px;font-size:13.5px;line-height:1.78;border-top:1px dashed var(--line);color:#1e293b}
+.subj.open .subj-body{display:block}
+.subj-body p{margin:8px 0}
+.subj-body ol,.subj-body ul{margin:6px 0;padding-left:20px}
+.subj-body li{margin:4px 0}
+.subj-body strong{color:#0f172a}
+.stat-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+.stat-card{background:var(--card);border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.stat-card .num{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat-card .lab{font-size:12px;color:var(--muted);margin-top:2px}
+.stat-table-wrap{background:var(--card);border-radius:14px;padding:4px 2px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow-x:auto}
+.stat-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.stat-table th{color:var(--muted);font-weight:600;font-size:12px;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+.stat-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;font-variant-numeric:tabular-nums}
+.stat-table tr:last-child td{border-bottom:0}
+.danger-zone{margin-top:14px;background:var(--card);border-radius:14px;padding:14px;font-size:12.5px;color:var(--muted);line-height:1.7}
+.danger-zone .btn{margin-top:10px;width:100%;padding:11px}
+.foot{text-align:center;font-size:11.5px;color:#94a3b8;margin:22px 0 4px;line-height:1.8}
+@media (min-width:600px){
+  h1{font-size:20px}
+  .stem{font-size:18px}
+  .tab{font-size:14.5px;padding:10px 18px}
+  .stat-cards{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-top">
+    <div class="brand">
+      <h1>数据中心运维（高级）工程师</h1>
+      <p>考前冲刺刷题 · 单选 60 · 多选 20 · 判断 40</p>
+    </div>
+    <div class="mini">
+      <div class="mini-num" id="miniDone">0<span>/120</span></div>
+      <div class="mini-lab">已答 · 正确率 <b id="miniAcc">—</b></div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="practice">刷题</button>
+    <button class="tab" data-tab="wrong">错题本<span class="dot" id="wrongCount" style="display:none">0</span></button>
+    <button class="tab" data-tab="subjective">主观题</button>
+    <button class="tab" data-tab="stats">统计</button>
+  </nav>
+</header>
+
+<main>
+  <section id="tab-practice" class="panel active">
+    <div class="toolbar">
+      <div class="chip-row" id="typeChips">
+        <button class="chip active" data-type="all">全部</button>
+        <button class="chip" data-type="single">单选</button>
+        <button class="chip" data-type="multi">多选</button>
+        <button class="chip" data-type="judge">判断</button>
+      </div>
+      <div class="chip-row" id="orderChips">
+        <button class="chip active" data-order="seq">顺序</button>
+        <button class="chip" data-order="rand">随机</button>
+      </div>
+    </div>
+    <div class="progress"><i id="progressFill"></i></div>
+    <article class="qcard" id="qcard"></article>
+  </section>
+
+  <section id="tab-wrong" class="panel">
+    <div class="wrong-head">
+      <div>
+        <strong>错题本</strong>
+        <p>答错的题自动收录，重做答对后自动移出</p>
+      </div>
+      <button class="btn ghost" id="startWrong">错题重练</button>
+    </div>
+    <div id="wrongList"></div>
+  </section>
+
+  <section id="tab-subjective" class="panel">
+    <div class="note">主观题预测按命中概率排序（依据第一天教材为主的原则）。点击卡片展开答题要点；作答建议「总—分—总」，每条点明标准依据。</div>
+    <div id="subjList"></div>
+  </section>
+
+  <section id="tab-stats" class="panel">
+    <div class="stat-cards" id="statCards"></div>
+    <div class="stat-table-wrap">
+      <table class="stat-table">
+        <thead><tr><th>题型</th><th>题量</th><th>已答</th><th>答对</th><th>正确率</th></tr></thead>
+        <tbody id="statBody"></tbody>
+      </table>
+    </div>
+    <div class="danger-zone">
+      进度仅保存在本机浏览器（localStorage），不上传服务器；清除浏览器数据会丢失进度。
+      <button class="btn danger" id="resetAll">重置全部进度</button>
+    </div>
+    <footer class="foot">依据「数据中心运维管理（高级）工程师」培训教材整理 · 仅供个人备考<br>题目与答案以正式考试要求为准</footer>
+  </section>
+</main>
+
+<script>
+const DATA = {"singles":[{"type":"single","stem":"通算中心的算力主要由基于（　）芯片的服务器提供。","options":["GPU","CPU","ASIC","FPGA"],"answer":"B","explain":"（D1-P2）","source":"D1-P2","id":"s1"},{"type":"single","stem":"智算中心主要采用的计算架构是（　）。","options":["通用计算架构","超级计算架构","人工智能计算架构","分布式存储架构"],"answer":"C","explain":"（D1-P2）","source":"D1-P2","id":"s2"},{"type":"single","stem":"\"十五五\"规划纲要正式公布的时间是（　）。","options":["2025年10月8日","2026年3月13日","2025年6月30日","2026年4月23日"],"answer":"B","explain":"（D1-P2）","source":"D1-P2","id":"s3"},{"type":"single","stem":"截至2025年6月底，我国在用算力中心机架总规模达（　）。","options":["962万标准机架","1085万标准机架","1445万标准机架","1850万标准机架"],"answer":"B","explain":"（D1-P2）","source":"D1-P2","id":"s4"},{"type":"single","stem":"我国计算设备算力总规模达到962EFlops，全球占比21%，增速达（　）。","options":["73%","82%","96%","35%"],"answer":"A","explain":"（增速73%；注意与智能算力增速96%区分）（D1-P2）","source":"D1-P2","id":"s5"},{"type":"single","stem":"《算力基础设施高质量发展行动计划》提出到2025年智能算力占总算力的比例达到（　）。","options":["25%","35%","50%","75%"],"answer":"B","explain":"（2023年10月8日工信部等六部门发布）（D1-P2）","source":"D1-P2","id":"s6"},{"type":"single","stem":"我国智能算力的增速达（　）。","options":["73%","82%","96%","21%"],"answer":"C","explain":"（D1-P2）","source":"D1-P2","id":"s7"},{"type":"single","stem":"标准历史\"场地\"阶段的标志性标准是（　）。","options":["GB2887-82《计算站场地技术条件》","GB50174-93《电子计算机机房设计规范》","GB50462","GB/T51314"],"answer":"A","explain":"（D1-P3）","source":"D1-P3","id":"s8"},{"type":"single","stem":"超算中心的建设标准现状是（　）。","options":["已有十余项国家标准","只有团体标准 T/CCUA016-2021，没有国家标准","正在编制两项国标","与智算共用同一套国标"],"answer":"B","explain":"（D1-P7）","source":"D1-P7","id":"s9"},{"type":"single","stem":"2025年9月26日韩国国情院大田数据中心火灾的直接起因是（　）。","options":["空调系统电气故障","UPS系统中的锂电池在搬迁准备时意外起火","柴油发电机漏油","电缆过载发热"],"answer":"B","explain":"（断电约40分钟后电池组迸出火花引发爆炸）（D1-P4）","source":"D1-P4","id":"s10"},{"type":"single","stem":"2023年3月29日广州南沙IDC冷冻系统故障的根因是（　）。","options":["冷水机组压缩机损坏","冷却塔风机停转","BA系统运行异常致冷冻水泄漏至蓄冷池排出","冷冻水泵电源中断"],"answer":"C","explain":"（联通阀门全部打开，机房停止供冷高温宕机，P0级故障）（D1-P4）","source":"D1-P4","id":"s11"},{"type":"single","stem":"2018年12月阿里云香港可用区C服务中断的直接原因是（　）。","options":["市电中断","制冷设备故障导致机房温度过高，服务器保护性关机","UPS爆炸","网络设备故障"],"answer":"B","explain":"（服务中断约6小时）（D2-P83）","source":"D2-P83","id":"s12"},{"type":"single","stem":"数据中心面临的压力不包括（　）。","options":["安全运行压力","电力缺乏压力","信创压力","出口带宽压力"],"answer":"D","explain":"（五大压力：安全运行、电力缺乏、信创、监管、更新）（D1-P4-5）","source":"D1-P4-5","id":"s13"},{"type":"single","stem":"\"提高数据中心安全、增强抵御风险的能力\"是数据中心的（　）。","options":["阶段性目标","永恒主题","附属要求","十五五期间专项任务"],"answer":"B","explain":"（D1-P6）","source":"D1-P6","id":"s14"},{"type":"single","stem":"总体安全的构成是（　）。","options":["实体安全＋边界安全＋内在安全","人员安全＋设备安全＋系统安全","物理安全＋网络安全＋数据安全","生产安全＋消防安全＋信息安全"],"answer":"A","explain":"（D1-P6）","source":"D1-P6","id":"s15"},{"type":"single","stem":"下列机柜功率密度与发布时间的对应关系，正确的是（　）。","options":["NVL72—132kW—2025年","NVL72—190~230kW—2025年","Vera Rubin NVL144—600kW—2026年","Rubin Ultra NVL144—132kW—2027年"],"answer":"A","explain":"（132kW/2025；190~230kW/2026；600kW估/2027）（D1-P8）","source":"D1-P8","id":"s16"},{"type":"single","stem":"已正式颁布的智算中心国家标准是（　）。","options":["《算力设施工程技术标准》","《绿色算力基础设施技术要求》","《数据中心冷板式液冷系统技术规范》GB/T 48023-2026","《数据中心浸没式液冷系统技术规范》"],"answer":"C","explain":"（已颁布两本：GB/T 48023-2026 与 GB/T 48097-2026，其余为在编）（D1-P10）","source":"D1-P10","id":"s17"},{"type":"single","stem":"《数据中心冷板式液冷机柜通用规范》的标准号是（　）。","options":["GB/T 48023-2026","GB/T 48097-2026","GB/T 44989-2024","GB 40879-2021"],"answer":"B","explain":"（48023为系统技术规范，48097为机柜通用规范）（D1-P10）","source":"D1-P10","id":"s18"},{"type":"single","stem":"数据中心能效等级分为（　）。","options":["2级，1级能效最高","3级，1级能效最高","3级，3级能效最高","5级，1级能效最高"],"answer":"B","explain":"（D1-P14）","source":"D1-P14","id":"s19"},{"type":"single","stem":"数据中心电能比设计值的能效1级指标是（　）。","options":["1.15","1.20","1.25","1.40"],"answer":"A","explain":"（设计值1级1.15/2级1.25/3级1.40）（D1-P14）","source":"D1-P14","id":"s20"},{"type":"single","stem":"数据中心投产后不到2年的电能比运行值能效1级指标是（　）。","options":["1.15","1.20","1.30","1.50"],"answer":"B","explain":"（运营初期放宽：<2年 1.20/1.30/1.50）（D1-P14）","source":"D1-P14","id":"s21"},{"type":"single","stem":"数据中心能效限定值对应能效等级（　）。","options":["1级","2级","3级","不分等级"],"answer":"C","explain":"（能效限定值为3级，即强制底线）（D1-P14）","source":"D1-P14","id":"s22"},{"type":"single","stem":"《数据中心项目规范》共有强制性条文（　）。","options":["59条","69条","79条","89条"],"answer":"C","explain":"（D1-P14）","source":"D1-P14","id":"s23"},{"type":"single","stem":"超大型数据中心的计算负荷 P 应满足（　）。","options":["P≥40MVA","40＞P≥10MVA","10＞P≥3MVA","P＜3MVA"],"answer":"A","explain":"（超大型≥40、大型10~40、中型3~10、小型<3）（D1-P17）","source":"D1-P17","id":"s24"},{"type":"single","stem":"大型和超大型数据中心的年均PUE、年均WUE要求是（　）。","options":["PUE<1.3、WUE<1.6L/kWh","PUE<1.5、WUE<1.6L/kWh","PUE<1.25、WUE<1.0L/kWh","PUE<1.3、WUE<1.0L/kWh"],"answer":"A","explain":"（中小型PUE<1.5，注意区分）（D1-P17）","source":"D1-P17","id":"s25"},{"type":"single","stem":"年综合能耗超过（　）的数据中心应设置能耗在线监测系统。","options":["5000吨标准煤","10000吨标准煤","50000吨标准煤","10万立方米"],"answer":"B","explain":"（年用水量超10万立方米设水耗在线监测；D选项是水量单位混淆项）（D1-P27）","source":"D1-P27","id":"s26"},{"type":"single","stem":"A级除满足B级要求外，应按容错要求配置的系统是（　）。","options":["供配电、冷却与空调、网络布线、给水","供配电、智能化、冷却与空调、给水","供配电、冷却与空调、网络布线、防火","供配电、智能化、网络布线、给水"],"answer":"A","explain":"（A级容错不含\"智能化\"；B级冗余才含智能化）（D1-P23）","source":"D1-P23","id":"s27"},{"type":"single","stem":"Uptime Tier Ⅳ 数据中心的特征是（　）。","options":["基本能力","冗余组件","并行维护","容错"],"answer":"D","explain":"（Tier Ⅰ基本能力、Ⅱ冗余组件、Ⅲ并行维护、Ⅳ容错）（D1-P23）","source":"D1-P23","id":"s28"},{"type":"single","stem":"按GB50174分级，等级由高到低的排序是（　）。","options":["A级＞B级＞C级","C级＞B级＞A级","TierⅣ＞A级＞B级","三种体系同级对照"],"answer":"A","explain":"（国标A高C低；TIA/Uptime体系Ⅰ低Ⅳ高，方向相反）（D1-P23）","source":"D1-P23","id":"s29"},{"type":"single","stem":"新建A级和B级数据中心室外地面标高应高出当地有水文资料以来的最高水位线（　）。","options":["0.5m或以上","1.0m或以上","1.5m或以上","2.0m或以上"],"answer":"B","explain":"（首层室内地面高出相邻室外地面0.6m或以上）（D1-P25）","source":"D1-P25","id":"s30"},{"type":"single","stem":"同城建设的灾备数据中心与主用数据中心直线距离不宜小于（　）。","options":["5km","10km","50km","100km"],"answer":"B","explain":"（异地不宜小于100km）（D1-P19）","source":"D1-P19","id":"s31"},{"type":"single","stem":"异地建设的灾备数据中心选址要求正确的是（　）。","options":["与主用数据中心在同一地震带但相距100km以上","不应与主用数据中心在同一地震带、台风等自然灾害隐患区","直线距离不宜小于10km","应与主用数据中心共用变电站"],"answer":"B","explain":"（同城要求电源来自不同变电站、≥10km；异地≥100km）（D1-P19）","source":"D1-P19","id":"s32"},{"type":"single","stem":"当电子信息设备不确定时，新建数据中心主机房区结构可变荷载标准值不应小于（　）。","options":["8kN/m²","10kN/m²","12kN/m²","20kN/m²"],"answer":"C","explain":"（当前AI机柜约1.3吨→12kN/㎡；未来300kW机柜→20kN/㎡）（D1-P28）","source":"D1-P28","id":"s33"},{"type":"single","stem":"用于搬运设备的通道净宽不应小于（　）。","options":["0.8m","1.0m","1.2m","1.5m"],"answer":"D","explain":"（搬1.5、面1.2、背0.8、修1.0）（D1-P28-29）","source":"D1-P28-29","id":"s34"},{"type":"single","stem":"两相浸没式液冷机柜为立式时，机柜面对面的间距不宜小于（　）。","options":["0.8m","1.2m","1.5m","1.8m"],"answer":"D","explain":"（两相立式面对面1.8m、背面1.2m；浸没卧式1.2/0.8m）（D1-P30）","source":"D1-P30","id":"s35"},{"type":"single","stem":"主机房使用面积计算公式A=S·N中，S的取值可取（　）。","options":["1.0~2.0㎡/台","2.0~4.0㎡/台","4.0~5.0㎡/台","5.0~7.0㎡/台"],"answer":"B","explain":"（新标准2.0~5.0）（D1-P31）","source":"D1-P31","id":"s36"},{"type":"single","stem":"活动地板下的空间既作为电缆布线、又作为空调静压箱时，地板高度不宜小于（　）。","options":["250mm","400mm","500mm","600mm"],"answer":"C","explain":"（布线250、静压箱500、管道敷设600）（D1-P32）","source":"D1-P32","id":"s37"},{"type":"single","stem":"冷板液冷系统的供水温度范围为（　）。","options":["7~30℃","12~17℃","15~35℃","32~37℃"],"answer":"C","explain":"（水冷供水7~30℃；供回水32~37℃；冷冻水12/17℃）（D1-P35）","source":"D1-P35","id":"s38"},{"type":"single","stem":"A级数据中心冷却与空调系统应具有的能力是（　）。","options":["冗余供冷能力","连续供冷能力","自然冷却能力","蓄冷能力"],"answer":"B","explain":"（D1-P37）","source":"D1-P37","id":"s39"},{"type":"single","stem":"采用交流电源的电子信息设备，其配电系统应采用的接地形式是（　）。","options":["TN-C","TN-S","TT","IT"],"answer":"B","explain":"（低压配电宜采用TN系统，交流IT设备应采用TN-S；TN-C严禁用于数据中心）（D1-P39、D2-P30）","source":"D1-P39","id":"s40"},{"type":"single","stem":"-48V直流系统的正确接地方式是（　）。","options":["负极接地","正极接地","正负极均接地","悬浮不接地"],"answer":"B","explain":"（240V/336V直流系统采用悬浮方式，正负极均不直接接地并设绝缘监察）（D1-P40）","source":"D1-P40","id":"s41"},{"type":"single","stem":"电力系统中性点直接接地、PE线与N线全程分开的接地形式是（　）。","options":["TN-C","TN-S","TN-C-S","TT"],"answer":"B","explain":"（D2-P18）","source":"D2-P18","id":"s42"},{"type":"single","stem":"建筑内锂离子电池室的装设容量不宜大于（　）。","options":["300kWh","600kWh","1000kWh","2000kWh"],"answer":"B","explain":"（D1-P47）","source":"D1-P47","id":"s43"},{"type":"single","stem":"锂离子电池室通风换气次数不应少于（　）。","options":["6次/h","10次/h","12次/h","24次/h"],"answer":"C","explain":"（可燃气体报警联动阈值不高于爆炸下限10%、浓度不超25%）（D1-P48）","source":"D1-P48","id":"s44"},{"type":"single","stem":"锂离子电池室应采用的分隔措施是（　）。","options":["耐火极限不低于3.00h的防火隔墙和1.50h的楼板","耐火极限不低于4.00h的防火隔墙和2.00h的楼板","耐火极限不低于2.00h的防火隔墙和1.00h的楼板","普通隔墙加防火门即可"],"answer":"B","explain":"（门应采用甲级防火门）（D1-P47）","source":"D1-P47","id":"s45"},{"type":"single","stem":"单线图（SLD）中标注\"SCB10-1600/10\"，正确解读是（　）。","options":["1600kW油浸式变压器、高压10kV","1600kVA干式变压器、高压侧10kV","1600A框架断路器、10kV开关柜","1600kVA UPS、输出10kV"],"answer":"B","explain":"（S三相、C环氧浇注干式、B铜箔绕组；Dyn11抑制三次谐波）（D2-P5）","source":"D2-P5","id":"s46"},{"type":"single","stem":"UPS系统基本容量E与电子信息设备计算负荷P的关系应满足（　）。","options":["E≥1.1P","E≥1.2P","E≥1.5P","E≥2P"],"answer":"B","explain":"（D2-P24）","source":"D2-P24","id":"s47"},{"type":"single","stem":"TIA-942标准中Rated-3级数据中心的现场燃油储存要求是（　）。","options":["8小时","24小时","72小时","96小时"],"answer":"C","explain":"（Rated-2：24h；Rated-3：72h；Rated-4：96h）（D2-P23）","source":"D2-P23","id":"s48"},{"type":"single","stem":"电流互感器（CT）二次侧额定标准电流通常是（　）。","options":["1A或5A","10A或20A","100V","380V"],"answer":"A","explain":"（PT二次标准电压100V；CT二次严禁开路）（D2-P33）","source":"D2-P33","id":"s49"},{"type":"single","stem":"继电保护\"四项基本功\"指的是速动性、选择性、灵敏性和（　）。","options":["经济性","可靠性","扩展性","安全性"],"answer":"B","explain":"（D2-P38）","source":"D2-P38","id":"s50"},{"type":"single","stem":"10kV系统上下级保护选择性配合的时间级差通常取（　）。","options":["0.02~0.05s","0.1s","0.2~0.3s","≥1s"],"answer":"C","explain":"（级差不足将\"越级跳闸\"扩大事故）（D2-P39）","source":"D2-P39","id":"s51"},{"type":"single","stem":"\"两票三制\"中的\"两票\"是指（　）。","options":["工作票、操作票","工作票、值班票","操作票、试验票","巡检票、检修票"],"answer":"A","explain":"（三制：交接班制、巡回检查制、设备定期试验轮换制）（D2-P41）","source":"D2-P41","id":"s52"},{"type":"single","stem":"机房精密空调的显热比（SHR）要求是（　）。","options":["≥0.9","≥0.7","≥0.6","≥0.5"],"answer":"A","explain":"（舒适空调仅0.6~0.7）（D2-P44）","source":"D2-P44","id":"s53"},{"type":"single","stem":"蒸汽压缩式制冷循环的\"四大件\"是压缩机、冷凝器、节流阀和（　）。","options":["冷却塔","蒸发器","冷水机组","风机盘管"],"answer":"B","explain":"（D2-P46）","source":"D2-P46","id":"s54"},{"type":"single","stem":"下列关于提高冷水机组COP的措施，正确的是（　）。","options":["提高冷冻水供水温度＋降低冷却水温度","降低冷冻水供水温度＋提高冷却水温度","只影响PUE不影响COP","两者都使COP下降"],"answer":"A","explain":"（蒸发端温度越高、冷凝端温度越低，COP越高）（D2-P48）","source":"D2-P48","id":"s55"},{"type":"single","stem":"Commissioning验收调试的正确顺序是（　）。","options":["SAT→FAT→ICT","FAT→SAT→ICT","ICT→SAT→FAT","FAT→ICT→SAT"],"answer":"B","explain":"（FAT工厂验收→SAT现场验收→ICT综合系统测试）（D2-P70）","source":"D2-P70","id":"s56"},{"type":"single","stem":"GB50462-2024要求A级机房综合测试（ICT）的测试负载应为（　）。","options":["真实IT负载","假负载（Load Bank）","混合负载","半载即可"],"answer":"B","explain":"（测试不通过不得投入运行）（D2-P70)","source":"D2-P70","id":"s57"},{"type":"single","stem":"在线式UPS市电→电池的切换时间合格判据是（　）。","options":["≤4ms","≤10ms","≤100ms","≤1s"],"answer":"A","explain":"（切换时间>10ms可能导致服务器掉电重启；须用示波器实测波形）（D2-P71）","source":"D2-P71","id":"s58"},{"type":"single","stem":"TAB调试中的\"A\"指的是（　）。","options":["Adjust","Airflow","Air","Automatic"],"answer":"B","explain":"（Temperature温度场、Airflow风量、Balance水力平衡）（D2-P73）","source":"D2-P73","id":"s59"},{"type":"single","stem":"液冷系统\"四层防护\"的正确内容是（　）。","options":["源头防漏、检测发现、自动隔离、导流防护","防漏、防火、防静电、防凝露","检测、报警、切电、排水","密封、倒灌、围堰、吸附"],"answer":"A","explain":"（华为TMU方案；检测布点在CDU底部、管路接头下方、机柜托盘、地板下）（D2-P84）","source":"D2-P84","id":"s60"}],"multis":[{"type":"multi","stem":"智算中心的算力由基于（　）等AI芯片的加速计算平台提供。","options":["GPU","CPU","FPGA","ASIC"],"answer":"ACD","explain":"（CPU属通算中心）（D1-P2）","source":"D1-P2","id":"m1"},{"type":"multi","stem":"数据中心面临的压力包括（　）。","options":["安全运行压力","电力缺乏压力","信创压力","监管压力","更新压力"],"answer":"ABCDE","explain":"（D1-P4-5）","source":"D1-P4-5","id":"m2"},{"type":"multi","stem":"数据中心的发展趋势包括（　）。","options":["大型化、集中化","微型化、小型化","模块化、产品化","高密度、风液混合、液冷技术","绿色、低碳"],"answer":"ABCDE","explain":"（八大趋势还有专业化、自动化智能化、高安全）（D1-P6）","source":"D1-P6","id":"m3"},{"type":"multi","stem":"算力中心标准体系的全生命周期维度包括（　）等环节。","options":["规划设计","施工验收","检测评估","运行维护"],"answer":"ABCD","explain":"（D1-P8）","source":"D1-P8","id":"m4"},{"type":"multi","stem":"通算中心（数据中心）的核心国家标准包括（　）。","options":["GB50174","GB50462","GB/T51314","GB40879"],"answer":"ABCD","explain":"（设计、施工验收、运维、能效四大核心）（D1-P9）","source":"D1-P9","id":"m5"},{"type":"multi","stem":"智算中心已正式颁布的国家标准包括（　）。","options":["《数据中心冷板式液冷系统技术规范》GB/T 48023-2026","《数据中心冷板式液冷机柜通用规范》GB/T 48097-2026","《算力设施工程技术标准》","《绿色算力基础设施技术要求》"],"answer":"AB","explain":"（C、D为在编计划）（D1-P10）","source":"D1-P10","id":"m6"},{"type":"multi","stem":"中型、大型和超大型数据中心应采用的资源节约集约利用技术措施包括（　）。","options":["可再生能源","蓄冷","液冷","储能","余热回收","中水利用"],"answer":"ABCDEF","explain":"（项目规范2.1.7）（D1-P17）","source":"D1-P17","id":"m7"},{"type":"multi","stem":"数据中心应采用一级能效机电设备，其中包括（　）。","options":["电力变压器","冷水机组","UPS","水泵"],"answer":"ABCD","explain":"（12类还包括电动机、压缩机、通风机、服务器、显示器、空调机、照明灯具、HVDC）（D1-P20）","source":"D1-P20","id":"m8"},{"type":"multi","stem":"GB/T50174设计方案中，A级数据中心按容错要求配置的系统包括（　）。","options":["供配电系统","冷却与空调系统","网络布线","给水系统"],"answer":"ABCD","explain":"（D1-P23）","source":"D1-P23","id":"m9"},{"type":"multi","stem":"选址要求中，数据中心应远离或避开的区域包括（　）。","options":["水灾、地震、地质等自然灾害隐患区域","产生粉尘、油烟、有害气体的场所","生产或贮存腐蚀性、易燃易爆物品的场所","强电磁场干扰区域"],"answer":"ABCD","explain":"（3.2.1选址八条）（D1-P25）","source":"D1-P25","id":"m10"},{"type":"multi","stem":"关于数据中心选址，下列说法正确的有（　）。","options":["新建大型和超大型数据中心应选址在能源供给、网络时延满足使用需求和气候环境有利于降低能耗的地区","小型和中型数据中心应选址在用户所在地区","A级和B级数据中心选址应避开洪泛区、蓄滞洪区","新建大型数据中心必须设置在城市中心区域"],"answer":"ABC","explain":"（D1-P24）","source":"D1-P24","id":"m11"},{"type":"multi","stem":"锂离子电池室的设计要求，正确的有（　）。","options":["宜设置在24m以下楼层，不应设在地下室或半地下室","每个电池室装设容量不宜大于600kWh","通风格换气次数不应少于12次/h","应靠外墙设置且不应贴邻疏散楼梯间"],"answer":"ABCD","explain":"（D1-P47-48）","source":"D1-P47-48","id":"m12"},{"type":"multi","stem":"智能化系统应包括（　）。","options":["环境与冷却监控系统","电力监控系统","电子防护系统","火灾自动报警系统及基础设施管理系统"],"answer":"ABCD","explain":"（项目规范2.4.7；火灾自动报警应与视频监控系统和自动灭火系统联动）（D1-P27）","source":"D1-P27","id":"m13"},{"type":"multi","stem":"数据中心电子防护系统（安防）按防区设置，下列正确的有（　）。","options":["园区周界应设入侵和紧急报警、出入口控制","园区内公共区域应设视频监控","数据中心本体应设视频监控、出入口控制","建筑内部公共区域应设电子巡查"],"answer":"ABCD","explain":"（项目规范2.4.8五级防区）（D1-P50）","source":"D1-P50","id":"m14"},{"type":"multi","stem":"关于小母线（树干式供配电）的特点，正确的有（　）。","options":["本体可靠性高","即插即用、易于扩展和变更","故障影响范围大","寿命长、可重复利用"],"answer":"ABCD","explain":"（D1-P43）","source":"D1-P43","id":"m15"},{"type":"multi","stem":"与UPS相比，HVDC（高压直流）的特点包括（　）。","options":["变换级数为1级","支持模块休眠","IT设备全兼容","价格稍高"],"answer":"ABD","explain":"（HVDC对IT设备仅部分兼容；UPS才全兼容）（D1-P43）","source":"D1-P43","id":"m16"},{"type":"multi","stem":"关于连续供冷，正确的有（　）。","options":["A级数据中心冷却与空调系统应具有连续供冷能力","为冷却与空调设备供电的UPS设计时长不应小于为电子信息设备供电的UPS设计时长","蓄冷时间不应小于UPS设计时长","蓄冷设施宜采用在线运行模式"],"answer":"ABCD","explain":"（D1-P37）","source":"D1-P37","id":"m17"},{"type":"multi","stem":"GB50462-2024对A级机房综合测试（ICT）的要求包括（　）。","options":["满负荷带载测试","市电中断模拟","UPS切换模拟","柴发启动带载模拟"],"answer":"ABCD","explain":"（须用假负载、数据存档、不通过不得投运）（D2-P70）","source":"D2-P70","id":"m18"},{"type":"multi","stem":"假负载带载测试按阶梯加载，正确的组合是（　）。","options":["25%加载持续2小时","50%加载持续4小时","75%加载持续4小时","100%满载持续4小时"],"answer":"ABCD","explain":"（D2-P70）","source":"D2-P70","id":"m19"},{"type":"multi","stem":"RCA根因分析中，鱼骨图排查的六个维度包括（　）。","options":["人、机","料、法","环","测"],"answer":"ABCD","explain":"（Man/Machine/Material/Method/Environment/Measurement）（D2-P84）","source":"D2-P84","id":"m20"}],"judges":[{"type":"judge","stem":"智算中心主要用于人工智能的训练和推理计算。（　）","options":["正确","错误"],"answer":"T","explain":"（D1-P2）","source":"D1-P2","id":"j1"},{"type":"judge","stem":"超算中心广泛应用于航天、国防、石油勘探、气候建模和基因组测序等场景。（　）","options":["正确","错误"],"answer":"T","explain":"（D1-P2）","source":"D1-P2","id":"j2"},{"type":"judge","stem":"我国计算设备算力总规模962EFlops中，智能算力占比呈下降趋势。（　）","options":["正确","错误"],"answer":"F","explain":"（智能算力稳定高速增长，增速96%，占全国总算力比重超过五分之四（约75%），是绝对主导）（D1-P2）","source":"D1-P2","id":"j3"},{"type":"judge","stem":"我国超算中心建设已有完善的国家标准体系。（　）","options":["正确","错误"],"answer":"F","explain":"（超算中心标准缺乏，仅有团体标准T/CCUA016-2021）（D1-P7）","source":"D1-P7","id":"j4"},{"type":"judge","stem":"GB2887-82《计算站场地技术条件》属于标准发展史中\"机房\"阶段的产物。（　）","options":["正确","错误"],"answer":"F","explain":"（场地阶段；机房阶段是GB50174-93）（D1-P3）","source":"D1-P3","id":"j5"},{"type":"judge","stem":"2025年9月韩国国情院数据中心火灾中，事故动用了96名消防员。（　）","options":["正确","错误"],"answer":"F","explain":"（242名消防员、67辆消防车）（D1-P4）","source":"D1-P4","id":"j6"},{"type":"judge","stem":"广州南沙IDC故障被公司判定为P0级故障。（　）","options":["正确","错误"],"answer":"T","explain":"（影响持续时间12小时，损失超亿元）（D1-P4）","source":"D1-P4","id":"j7"},{"type":"judge","stem":"AI参与运维是必然趋势，但要注意风险。（　）","options":["正确","错误"],"answer":"T","explain":"（D1-P6）","source":"D1-P6","id":"j8"},{"type":"judge","stem":"总体安全=实体安全+边界安全+内在安全。（　）","options":["正确","错误"],"answer":"T","explain":"（D1-P6）","source":"D1-P6","id":"j9"},{"type":"judge","stem":"通算中心的建设模式是\"按客盖房\"，即按客户需求定制建设。（　）","options":["正确","错误"],"answer":"F","explain":"（通算\"盖房待客\"，智算、超算\"按客盖房\"）（D1-P7）","source":"D1-P7","id":"j10"},{"type":"judge","stem":"数据中心能效等级分为3级，其中3级表示能效最高。（　）","options":["正确","错误"],"answer":"F","explain":"（1级最高，3级为能效限定值）（D1-P14）","source":"D1-P14","id":"j11"},{"type":"judge","stem":"数据中心投产运营不到2年的电能比运行值要求可比设计值适当放宽。（　）","options":["正确","错误"],"answer":"T","explain":"（1级放宽至1.20，2年后回到1.15）（D1-P14）","source":"D1-P14","id":"j12"},{"type":"judge","stem":"按计算负荷划分，P=25MVA的数据中心属于超大型数据中心。（　）","options":["正确","错误"],"answer":"F","explain":"（40＞P≥10为大型；≥40为超大型）（D1-P17）","source":"D1-P17","id":"j13"},{"type":"judge","stem":"中小型数据中心年均PUE值应小于1.3。（　）","options":["正确","错误"],"answer":"F","explain":"（中小型＜1.5；大型和超大型＜1.3）（D1-P17）","source":"D1-P17","id":"j14"},{"type":"judge","stem":"GB50174分级的A、B、C三级中，A级要求最高，等级由高到低排列。（　）","options":["正确","错误"],"answer":"T","explain":"（TIA-942/Uptime的Tier则由低到高）（D1-P23）","source":"D1-P23","id":"j15"},{"type":"judge","stem":"两个不同区域数据中心互为备份、数据实时传输且满足业务连续性要求时，基础设施可按冗余要求配置。（　）","options":["正确","错误"],"answer":"T","explain":"（3.3.3条，可容错也可冗余）（D1-P23）","source":"D1-P23","id":"j16"},{"type":"judge","stem":"新建A级和B级数据中心室外地面标高应高出当地最高水位线1.5m或以上。（　）","options":["正确","错误"],"answer":"F","explain":"（1.0m或以上）（D1-P25）","source":"D1-P25","id":"j17"},{"type":"judge","stem":"主机房区可以布置在与自身无关的用水区域的正下方。（　）","options":["正确","错误"],"answer":"F","explain":"（不得布置在用水区域和蓄水区域的直接下方）（D1-P27）","source":"D1-P27","id":"j18"},{"type":"judge","stem":"A级数据中心的机电设备基础、机柜和管线支吊架应进行抗震或减隔震设计。（　）","options":["正确","错误"],"answer":"T","explain":"（不低于主体结构抗震设防要求）（D1-P27）","source":"D1-P27","id":"j19"},{"type":"judge","stem":"NVL72机柜功耗132kW、满配重量1360kg、采用4+2配电方式。（　）","options":["正确","错误"],"answer":"T","explain":"（风液比8.5:1.5）（D1-P28）","source":"D1-P28","id":"j20"},{"type":"judge","stem":"面对面布置的机柜正面之间的距离不宜小于1.0m。（　）","options":["正确","错误"],"answer":"F","explain":"（1.2m；背对背0.8m；维修1.0m）（D1-P28-29）","source":"D1-P28-29","id":"j21"},{"type":"judge","stem":"新建数据中心的主机房净高不宜小于3.0m，既有建筑改建时不宜小于2.6m。（　）","options":["正确","错误"],"answer":"T","explain":"（D1-P32）","source":"D1-P32","id":"j22"},{"type":"judge","stem":"A级数据中心空气粒子浓度限值为35200000 pc/m³（9级）。（　）","options":["正确","错误"],"answer":"F","explain":"（A级352万/8级；3520万是C级/9级）（D1-P37）","source":"D1-P37","id":"j23"},{"type":"judge","stem":"采用液体冷却技术的数据中心应设置独立的冷却液收集系统。（　）","options":["正确","错误"],"answer":"T","explain":"（项目规范2.4.13）（D1-P20）","source":"D1-P20","id":"j24"},{"type":"judge","stem":"TN-C接地形式可以用于数据中心的IT设备配电系统。（　）","options":["正确","错误"],"answer":"F","explain":"（交流IT设备应采用TN-S；TN-C严禁用于数据中心，PEN全程合一会导致正常工作电流流过接地干线）（D1-P39、D2-P30）","source":"D1-P39","id":"j25"},{"type":"judge","stem":"240V或336V直流系统采用悬浮方式供电时，直流输出正、负极均不应直接接地。（　）","options":["正确","错误"],"answer":"T","explain":"（并与机柜、外壳等金属物电气隔离，设置绝缘监察系统）（D1-P40）","source":"D1-P40","id":"j26"},{"type":"judge","stem":"UPS的变换级数为2~3级，HVDC变换级数仅为1级。（　）","options":["正确","错误"],"answer":"T","explain":"（HVDC效率更高、可模块休眠）（D1-P43）","source":"D1-P43","id":"j27"},{"type":"judge","stem":"开关型SPD至限压型SPD之间线路长度小于10m时，两级之间应加装退耦装置。（　）","options":["正确","错误"],"answer":"T","explain":"（限压型SPD之间小于5m时同样加装；SPD具备能量自动配合功能时不受限制）（D1-P46）","source":"D1-P46","id":"j28"},{"type":"judge","stem":"锂离子电池室的可燃气体报警联动阈值不应高于可燃气体爆炸下限的25%。（　）","options":["正确","错误"],"answer":"F","explain":"（联动阈值不高于爆炸下限10%；室内浓度不超爆炸下限25%）（D1-P48）","source":"D1-P48","id":"j29"},{"type":"judge","stem":"锂离子电池宜部署在室外或独立建（构）筑物。（　）","options":["正确","错误"],"answer":"T","explain":"（部署在同一建筑内时须设独立电池室并满足系列要求）（D1-P47）","source":"D1-P47","id":"j30"},{"type":"judge","stem":"两票三制中的\"三制\"是指交接班制、巡回检查制、设备定期试验轮换制。（　）","options":["正确","错误"],"answer":"T","explain":"（D2-P41）","source":"D2-P41","id":"j31"},{"type":"judge","stem":"CT二次侧严禁短路，PT二次侧严禁开路。（　）","options":["正确","错误"],"answer":"F","explain":"（正好相反：CT二次严禁开路、PT二次严禁短路）（D2-P38）","source":"D2-P38","id":"j32"},{"type":"judge","stem":"数据中心事故约60%源于二次回路。（　）","options":["正确","错误"],"answer":"T","explain":"（D2-P38）","source":"D2-P38","id":"j33"},{"type":"judge","stem":"机房精密空调和舒适空调一样采用小风量、大焓差设计。（　）","options":["正确","错误"],"answer":"F","explain":"（精密空调大风量、小焓差；舒适空调才是小风量、大焓差）（D2-P47）","source":"D2-P47","id":"j34"},{"type":"judge","stem":"提高冷冻水供水温度、降低冷却水温度，会使冷水机组COP提高。（　）","options":["正确","错误"],"answer":"T","explain":"（这是冷却塔要清洗、水温取32/37℃与12/17℃的原因）（D2-P48）","source":"D2-P48","id":"j35"},{"type":"judge","stem":"数据中心IT设备宜由不间断电源系统供电，且UPS基本容量应留有余量E≥1.2P。（　）","options":["正确","错误"],"answer":"T","explain":"（D2-P24）","source":"D2-P24","id":"j36"},{"type":"judge","stem":"A级机房测试验证可以用部分真实IT负载代替假负载。（　）","options":["正确","错误"],"answer":"F","explain":"（测试负载应使用假负载Load Bank，不得直接用真实IT负载）（D2-P70）","source":"D2-P70","id":"j37"},{"type":"judge","stem":"柴油发电机每周空载试启动即可，无需带载测试。（　）","options":["正确","错误"],"answer":"F","explain":"（行业统计约30%柴发事故发生在真实停电时；GB50462-2024要求每年至少1次100%满载带载测试）（D2-P36、71）","source":"D2-P36","id":"j38"},{"type":"judge","stem":"智算中心（AIDC）供电架构正在从UPS向高压直流、市电直供＋储能方向演进。（　）","options":["正确","错误"],"answer":"T","explain":"（断电容忍度从秒级变为毫秒级、checkpoint不可丢失）（D2-P78）","source":"D2-P78","id":"j39"},{"type":"judge","stem":"2025年6月某智算中心32节点GPU集群掉电事故的直接原因是列头柜断路器接线端子松动发热脱扣。（　）","options":["正确","错误"],"answer":"T","explain":"（损失超200万元；整改含端子力矩复紧一年一次、70℃自动告警）（D2-P83）","source":"D2-P83","id":"j40"}],"subjective":[{"no":"一","stars":5,"title":"试述通算中心、智算中心、超算中心的主要区别","body":"**答题要点**（按 D1-P7 对比表展开，至少答出 8 个维度，每个维度三列对比+收尾）：\n\n1. **建设目的**：通算帮助用户降本增效或提升盈利水平；智算促进 AI 产业化、产业 AI 化、政府治理智能化；超算面向科研人员和科学计算场景提供支撑，提升国家及地方自主科研创新能力。\n2. **建设标准**：通算已有 GB50174、GB50462、GB/T51314 等十多项国家标准；智算已有 GB/T 48097-2026、GB/T 48023-2026 两项液冷标准，其余在编；超算没有国家标准，仅有团体标准《超级计算数据中心设计要求》T/CCUA016-2021。\n3. **具体功能**：通算以更低成本满足个性化、规模化业务应用需求；智算是算力生产供应平台、数据开放共享平台、智能生态建设平台、产业创新聚集平台；超算重点支持大规模科学计算和工程计算任务。\n4. **应用领域**：通算应用领域广泛且不断扩张；智算面向 AI 典型场景（知识图谱、自然语言处理、智能制造、自动驾驶、智慧农业、防洪减灾）；超算面向基础学科研究、工业制造、生命医疗、模拟仿真、气象环境、天文地理。\n5. **实时性**：通算高、智算高（较高）、超算低。\n6. **可靠性**：通算高、智算较高、超算较高。\n7. **功率密度**：通算低、智算高、超算高。\n8. **承重**：通算较高、智算较高（高）、超算高。\n9. **网络带宽**：通算较高、智算高、超算较高。\n10. **冷却方式**：通算风、水；智算风、水、液；超算水、液。\n11. **数据来源**：通算人工＋传感器；智算传感器＋计算机；超算计算机。\n12. **建设模式比喻**：通算\"盖房待客\"（先建后招租），智算、超算\"按客盖房\"（按业务定制）。\n\n**收尾（提分点）**：三类中心并非割裂，随着 AI 算力需求爆发，智算中心占比逐年增加，正在从\"算力设施\"向\"AI 工厂（词元工厂）\"演进，基础设施呈现液冷、高密度供电、高速网络、智能化运维四大特征；算力中心标准体系正沿全生命周期、通算/智算/超算分类、四级标准（国家/行业/地方/团体）三个维度加快完善。"},{"no":"二","stars":4,"title":"简述《数据中心设计标准》GB/T 50174-202X 相比 2017 版的主要修订内容","body":"**答题要点**（D1-P15-16，15条归纳为9点背诵）：\n\n1. **总体框架**：标准共 13 章 5 个附录，主要内容含总则、术语和缩略语、基本规定、项目组成及工艺平面布置、建筑与结构、制冷与空调、给水排水、电气、智能化、网络与布线、电磁屏蔽、消防与安全、资源能源利用与环境保护。\n2. **第1章总则**：明确适用于陆地新建、改建和扩建各类数据中心共性和基本技术要求。\n3. **新增第3章\"基本规定\"**：增加\"建设要求\"小节，将选址与设备布置、分级与性能要求、环境要求纳入；**新增\"容灾备份要求\"**，提出灾备数据中心和增强型数据中心设计要求（同城电源来自不同变电站、距离≥10km；异地不同地震带、≥100km）。\n4. **第4章面积与布置**：调整主机房区使用面积计算参数与支持区/辅助区面积倍数（辅助区和支持区面积之和由主机房1.5~2.5倍放宽至1.5~5倍），补充通道与设备间距要求（含液冷机柜间距）；AI 和高性能计算主机房宜集中布置。\n5. **第5章建筑结构**：修订部分荷载取值，增加楼面活荷载设计折减系数，补充抗震要求。\n6. **第6章由\"空气调节\"改为\"制冷与空调\"**：增加不同等级数据中心制冷与空调系统架构要求，按空调系统、冷冻水、冷却水、直膨、热管、间接蒸发冷却、液冷系统分别提出设计要求。\n7. **第7~9章机电**：给水排水增加蒸发冷却补水和水质要求；电气增加负荷计算、直流供配电系统及电能质量要求、细化分级供配电架构；智能化补充控制系统架构及供电要求与液冷控制要求，\"安全防范系统\"更名为\"**电子防护系统**\"，新增电力监控系统、数据中心基础设施管理系统（DCIM）、基础设施网络安全要求。\n8. **第10~12章**：网络与布线增加并行计算网络布线和液冷线缆要求；电磁屏蔽修改结构形式并补充屏蔽机房；消防与安全从本质安全角度统一防火疏散与消防设施要求，**新增液冷数据中心、锂离子电池相关消防及安全设计要求**。\n9. **第13章及附录**：新增\"资源能源利用与环境保护\"章（节能与可再生能源、节水、降碳、环保）；附录A修改选址、温湿度、活荷载、供回水温度、主用电源、UPS蓄电池备用时间等参数，增加液冷、连续供冷、直流UPS、锂电池室消防要求；新增附录B冷通道/液冷机房温湿度范围、附录C冷板式液冷冷却液参数、附录D浸没式液冷冷却液参数、附录E CDU冷源侧冷却介质参数。"},{"no":"三","stars":4,"title":"不间断电源系统采用锂离子电池时，电池室设计应符合哪些要求？","body":"**答题要点**（D1-P47-48，先答总原则再逐条）：\n\n**总原则**（12.1.8）：锂离子电池宜部署在**室外或独立建（构）筑物**；当与数据中心其他区域部署在同一建筑内时，应设置**独立的电池室**。\n\n**布置要求**：\n1. 靠外墙设置，不应位于经常有人停留房间的上/下一层或贴邻，**不应贴邻疏散楼梯间**；\n2. 外窗净高和净宽**均不小于1.0m**，采用易于从室内外打开或破拆的安全玻璃；\n3. 宜设置在**24m以下楼层**，**不应设置在地下室或半地下室**；\n4. 每个电池室装设容量**不宜大于600kWh**。\n\n**防火分隔**：采用**耐火极限不低于4.00h的防火隔墙**和**不低于2.00h的楼板**与其他区域分隔，门采用**甲级防火门**；管线穿过隔墙楼板时空隙用不燃材料封堵密实。\n\n**消防与监控**：\n1. 电池柜应设置**电池柜级或模块级消防装置**；\n2. 自动灭火系统应具备**有效灭火和持续抑制复燃**性能，喷水灭火按**严重危险级Ⅰ级**设计并设独立机械排烟；\n3. 感烟/感温探测器、照明、通风排烟设备采用**防爆型**；\n4. 设置**可燃气体探测报警系统**（宜氢气、一氧化碳或组合式探测器），接入消防控制室；\n5. 设置具备数据采集、通信、报警保护、均衡和绝缘失效检测功能的**电池管理系统（BMS）**，具备**热失控监测报警**，数据实时上传消防控制室或总控中心。\n\n**通风联动**：通风系统与可燃气体报警联动，**联动阈值不高于爆炸下限10%**（氢气爆炸下限约4%VOL，即0.4%VOL报警）；**换气次数不少于12次/h**；室内可燃气体浓度**不超过爆炸下限25%**；通风手动控制装置室内外分别设置。\n\n**联系实际（提分点）**：2025年9月韩国国情院大田数据中心UPS锂电池火灾（22小时、647个政府系统中断）和2024年新加坡数据中心锂电池间火灾（36小时无法进入）表明，锂电池热失控复燃性强、危害大，上述条款是液冷智算时代供电安全的底线要求。"},{"no":"四","stars":4,"title":"试述数据中心的分级体系及各级配置要求","body":"**答题要点**（D1-P23 + D2-P9-10、P30）：\n\n1. **国标分级（GB50174）**：数据中心基础设施分为A、B、C三级，等级由高到低：\n   - **C级**：按基本要求配置，满足电子信息设备安全运行的基本要求；\n   - **B级**：除满足C级要求外，**供配电、智能化、冷却与空调、网络布线、给水**等系统的设备或管线按**冗余**要求配置，冗余配置应满足电子信息设备运行要求；\n   - **A级**：除满足B级要求外，**供配电、冷却与空调、网络布线、给水**等系统按**容错**要求配置——当一个系统发生故障或进行检修时，电子信息设备正常运行。\n2. **国际分级**：美国 TIA-942 分 Tier/Rated Ⅰ~Ⅳ（基本、冗余组件、可同时维护/并行维护、容错）；Uptime Institute Tier Ⅰ基本能力、Ⅱ冗余组件、Ⅲ并行维护、Ⅳ容错；Tier Ⅳ 要求多路径全活跃、分区化（变压器室、发电机房、UPS室、电池室、冷水机房、电信入口物理隔离，不共享PDU、灭火和冷却）。\n3. **分级使用原则**：\n   - 各组成部分按不同等级设计时，数据中心建设等级按**最低建设等级**确定（3.3.2）；\n   - 多中心互为备份、数据实时传输、业务满足连续性时，可按容错**也可按冗余**配置（3.3.3）；\n   - 可结合业务差异化需求提高配置，兼顾**技术可靠性、建设经济性与TCO**（3.3.4）；冗余选择依据是**停机时间成本、风险容忍度、预算**。\n4. **冗余度数学表达**（联系第二三天教材）：N（无冗余）、N+1（任一单元故障不中断）、2N（两个完整独立系统，UPS单机利用率50%）、2(N+1)等。"},{"no":"五","stars":3,"title":"结合事故案例，论述数据中心（算力中心）面临的压力与应对措施","body":"**答题要点**（D1-P4-5 + 安全框架 + 趋势）：\n\n1. **五大压力**：①安全运行重要性显著增加；②电力缺乏越来越明显（美国拟建算力项目电网接入排队3~7年）；③信创压力（国产化率提高）；④监管压力（绿色低碳、窗口指导）；⑤更新压力（芯片技术发展快、基础设施配套紧跟）。\n2. **三起典型事故**：新加坡罗央大道数据中心锂电池间火灾（36小时无法进入）；韩国国情院大田数据中心UPS锂电池火灾（22小时、242名消防员、384个电池组烧毁、647个政府系统中断、96个完全烧毁）；广州南沙IDC冷却系统BA故障（冷冻水泄漏、宕机12小时、P0级、损失超亿元）。\n3. **应对与趋势**：八大发展趋势（大型化、微型化、模块化、高密度液冷、专业化、绿色低碳、自动化智能化、高安全）；总体安全=实体安全+边界安全+内在安全；落实\"一体化算力网\"与能效标准（GB40879能效等级、项目规范PUE/WUE限额）；AI参与运维是必然但要注意风险。\n4. **联系本职（提分点）**：可结合韶关算力中心现场运维实践（超节点液冷巡检、动环监控告警闭环、应急演练）说明\"设计冗余、交付验证、运维演练、根因分析\"四位一体。"},{"no":"六","stars":3,"title":"AIDC（智算中心）给基础设施运维带来了哪些新挑战？如何应对？","body":"**答题要点**（D2-P78-85）：\n\n1. **本质变化**：单机柜功率从 3~8kW 跃升至 30~100kW+，供电架构向高压直流/市电直供＋储能演进，断电容忍度从秒级变为**毫秒级、checkpoint 不可丢**，故障损失从万元级升至百万~千万元级（32节点集群案例损失超200万）。\n2. **四个新命题**：词元工厂化（运维对象升级为生产系统）；算电协同化（电费占比超50%，峰谷调度、绿电消纳）；液冷常态化（新增漏液、流量、水质三类故障域）；效能优先化（PUE、利用率、词元产出效率三指标并行）。\n3. **液冷防护**：四层防护体系——源头防漏（快接头自密封）、检测发现（漏水绳/液位传感器）、自动隔离（电磁阀快速关断）、导流防护（机柜托盘、导流槽）；检测布点在CDU底部、管路接头下方、机柜托盘、地板下四处。\n4. **测试验证**：A级机房须完成 ICT 综合测试（假负载满载、市电中断、UPS切换、柴发带载模拟），每年至少1次满载黑启动演练。\n5. **方法论**：RCA根因分析（5 Whys＋鱼骨图人机料法环测六维），如阿里云香港案例五问挖到\"交付时未做满负荷综合测试\"。\n6. **收尾金句**：数据中心基础设施\"平时看不见、出事就是大事\"——设计冗余、交付验证、运维演练、根因分析，四件事一件都不能少。\n\n---\n\n**最后提示**：\n- 客观题遇到精确数字拿不准时，优先回忆\"速记总表\"里加粗的锚点值；\n- 多选题宁缺勿滥，但\"全选型\"考题（趋势类、体系类）在本教材中出现频率高；\n- 判断题注意\"严禁/不宜/应/宜\"等措辞偷换（如TN-C、CT开路、A级含智能化、限定值=3级）；\n- 主观题按\"总—分—总\"结构作答，先亮结论/框架，再分条展开，每条点明标准依据（GB50174、项目规范、GB40879等），最后结合工程实际收尾。"}]};
+
+const ALL = [...DATA.singles, ...DATA.multis, ...DATA.judges];
+const byId = new Map(ALL.map(q => [q.id, q]));
+const KEY = 'dc-om-quiz-v1';
+const TYPE_NAME = { single: '单选题', multi: '多选题', judge: '判断题' };
+
+function load() {
+  try {
+    const s = localStorage.getItem(KEY);
+    return s ? JSON.parse(s) : null;
+  } catch (e) { return null; }
+}
+let state = load() || { answered: {}, filter: 'all', order: 'seq', pos: {} };
+if (!state.answered) state.answered = {};
+if (!state.pos) state.pos = {};
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+let filter = state.filter || 'all';
+let orderMode = state.order || 'seq';
+let list = [];
+let idx = 0;
+
+function idsFor(f) {
+  if (f === 'single') return DATA.singles.map(q => q.id);
+  if (f === 'multi') return DATA.multis.map(q => q.id);
+  if (f === 'judge') return DATA.judges.map(q => q.id);
+  return ALL.map(q => q.id);
+}
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function wrongIds() {
+  return ALL.filter(q => state.answered[q.id] && !state.answered[q.id].correct).map(q => q.id);
+}
+function buildList() {
+  let ids = filter === 'wrong' ? wrongIds() : idsFor(filter);
+  if (filter === 'wrong') ids = ids.slice();
+  else if (orderMode === 'rand') ids = shuffle(ids.slice());
+  list = ids;
+  const key = filter + '|' + orderMode;
+  idx = Math.min(state.pos[key] || 0, Math.max(0, list.length - 1));
+}
+function savePos() {
+  state.pos[filter + '|' + orderMode] = idx;
+  save();
+}
+
+function answerText(q) {
+  if (q.type === 'judge') return q.answer === 'T' ? '正确' : '错误';
+  if (q.type === 'multi') return q.answer.split('').join(' ');
+  return q.answer;
+}
+
+function submit(q, sel) {
+  let correct;
+  if (q.type === 'multi') {
+    const a = [...q.answer].sort().join('');
+    const s = [...sel].sort().join('');
+    correct = a === s;
+  } else {
+    correct = sel === q.answer;
+  }
+  state.answered[q.id] = { sel, correct, ts: Date.now() };
+  save();
+  render();
+  updateHeader();
+}
+
+function render() {
+  const card = document.getElementById('qcard');
+  if (!list.length) {
+    const msg = filter === 'wrong'
+      ? '错题已清空，继续保持。<br>回到「全部」继续刷题吧。'
+      : '当前没有题目。';
+    card.innerHTML = `<div class="empty">${msg}</div>`;
+    updateProgress();
+    return;
+  }
+  const q = byId.get(list[idx]);
+  const rec = state.answered[q.id];
+  let html = '<div class="qmeta">';
+  html += `<span class="badge ${q.type}">${TYPE_NAME[q.type]}</span>`;
+  if (q.source) html += `<span class="badge src">${esc(q.source)}</span>`;
+  if (filter === 'wrong') html += '<span class="badge wrongtag">错题重练</span>';
+  html += `<span class="qidx">第 ${idx + 1} / ${list.length} 题</span></div>`;
+  html += `<div class="stem">${esc(q.stem)}</div>`;
+  if (q.type === 'multi' && !rec) html += '<div class="hint">多选题：点选所有正确项后点击「确认答案」</div>';
+
+  if (q.type === 'single' || q.type === 'multi') {
+    q.options.forEach((opt, i) => {
+      const L = 'ABCDEF'[i];
+      let cls = 'opt';
+      if (rec) {
+        const sel = Array.isArray(rec.sel) ? rec.sel : [rec.sel];
+        const isAns = q.answer.includes(L);
+        const isSel = sel.includes(L);
+        if (isAns) cls += ' correct';
+        else if (isSel) cls += ' wrong';
+        else cls += ' dim';
+      }
+      html += `<button class="${cls}" data-l="${L}" ${rec ? 'disabled' : ''}><span class="letter">${L}</span><span class="content">${esc(opt)}</span></button>`;
+    });
+    if (q.type === 'multi' && !rec) {
+      html += '<button class="btn confirm" id="confirmMulti" disabled>确认答案</button>';
+    }
+  } else {
+    [['T', '正确'], ['F', '错误']].forEach(([v, label]) => {
+      let cls = 'opt judge-opt';
+      if (rec) {
+        const isAns = q.answer === v;
+        const isSel = rec.sel === v;
+        if (isAns) cls += ' correct';
+        else if (isSel) cls += ' wrong';
+        else cls += ' dim';
+      }
+      html += `<button class="${cls}" data-l="${v}" ${rec ? 'disabled' : ''}><span class="letter">${v === 'T' ? '✓' : '✗'}</span><span class="content">${label}</span></button>`;
+    });
+  }
+
+  if (rec) {
+    html += `<div class="feedback ${rec.correct ? 'ok' : 'bad'}">`;
+    html += `<div class="fb-title ${rec.correct ? 'ok' : 'bad'}">${rec.correct ? '✔ 回答正确' : '✘ 回答错误 · 正确答案：' + answerText(q)}</div>`;
+    html += `<div class="fb-exp">${esc(q.explain)}</div>`;
+    html += '<div class="fb-redo"><a href="javascript:void(0)" id="redo">重做本题</a></div></div>';
+  }
+
+  html += `<div class="actions"><button class="btn ghost" id="prevBtn" ${idx === 0 ? 'disabled' : ''}>上一题</button><button class="btn" id="nextBtn" ${idx >= list.length - 1 ? 'disabled' : ''}>下一题</button></div>`;
+  card.innerHTML = html;
+  bindCardEvents(q);
+  updateProgress();
+}
+
+function bindCardEvents(q) {
+  const card = document.getElementById('qcard');
+  card.querySelectorAll('.opt[data-l]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (state.answered[q.id]) return;
+      const L = btn.dataset.l;
+      if (q.type === 'multi') {
+        btn.classList.toggle('sel');
+        const sel = [...card.querySelectorAll('.opt.sel')].map(b => b.dataset.l);
+        const c = document.getElementById('confirmMulti');
+        if (c) {
+          c.disabled = sel.length === 0;
+          c.textContent = sel.length ? `确认答案（已选 ${sel.length} 项）` : '确认答案';
+        }
+      } else {
+        submit(q, L);
+      }
+    });
+  });
+  const cm = document.getElementById('confirmMulti');
+  if (cm) cm.addEventListener('click', () => {
+    const sel = [...card.querySelectorAll('.opt.sel')].map(b => b.dataset.l).sort();
+    submit(q, sel);
+  });
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  if (prev) prev.addEventListener('click', () => { if (idx > 0) { idx--; savePos(); render(); } });
+  if (next) next.addEventListener('click', () => { if (idx < list.length - 1) { idx++; savePos(); render(); } });
+  const redo = document.getElementById('redo');
+  if (redo) redo.addEventListener('click', () => {
+    delete state.answered[q.id];
+    save();
+    render();
+    updateHeader();
+  });
+}
+
+function updateProgress() {
+  const total = list.length || 1;
+  const done = list.filter(id => state.answered[id]).length;
+  const pct = Math.round(done / total * 100);
+  const fill = document.getElementById('progressFill');
+  if (fill) fill.style.width = pct + '%';
+}
+
+function updateHeader() {
+  const recs = ALL.map(q => state.answered[q.id]).filter(Boolean);
+  const done = recs.length;
+  const correct = recs.filter(r => r.correct).length;
+  document.getElementById('miniDone').innerHTML = `${done}<span>/120</span>`;
+  document.getElementById('miniAcc').textContent = done ? Math.round(correct / done * 100) + '%' : '—';
+  const wrongN = recs.length - correct;
+  const wc = document.getElementById('wrongCount');
+  if (wrongN > 0) { wc.style.display = 'inline-flex'; wc.textContent = wrongN; }
+  else wc.style.display = 'none';
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+  if (name === 'wrong') renderWrongList();
+  if (name === 'stats') renderStats();
+}
+
+function renderWrongList() {
+  const ids = wrongIds();
+  const box = document.getElementById('wrongList');
+  if (!ids.length) {
+    box.innerHTML = '<div class="empty">暂无错题。答错的题会自动出现在这里。</div>';
+    return;
+  }
+  box.innerHTML = ids.map(id => {
+    const q = byId.get(id);
+    const r = state.answered[id];
+    const selText = q.type === 'judge'
+      ? (r.sel === 'T' ? '正确' : '错误')
+      : (Array.isArray(r.sel) ? r.sel.join('') : r.sel);
+    return `<div class="wrong-item"><div class="wi-main" data-id="${id}">
+      <div class="wi-stem">${esc(q.stem)}</div>
+      <div class="wi-meta"><span>${TYPE_NAME[q.type]}</span><span class="x">你选 ${esc(selText)}</span><span class="v">正确 ${answerText(q)}</span><span>${esc(q.source || '')}</span></div>
+    </div><button class="go" data-id="${id}">重练</button></div>`;
+  }).join('');
+  box.querySelectorAll('[data-id]').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      filter = 'wrong';
+      orderMode = 'seq';
+      syncChips();
+      buildList();
+      const p = list.indexOf(id);
+      if (p >= 0) idx = p;
+      render();
+      switchTab('practice');
+    });
+  });
+}
+
+function renderStats() {
+  const recs = ALL.map(q => state.answered[q.id]).filter(Boolean);
+  const done = recs.length;
+  const correct = recs.filter(r => r.correct).length;
+  const wrongN = done - correct;
+  document.getElementById('statCards').innerHTML = `
+    <div class="stat-card"><div class="num">${done}<span style="font-size:13px;color:#94a3b8">/120</span></div><div class="lab">已答题目</div></div>
+    <div class="stat-card"><div class="num">${done ? Math.round(correct / done * 100) : 0}%</div><div class="lab">总正确率</div></div>
+    <div class="stat-card"><div class="num" style="color:#b91c1c">${wrongN}</div><div class="lab">当前错题</div></div>
+    <div class="stat-card"><div class="num" style="color:#15803d">${correct}</div><div class="lab">答对题数</div></div>`;
+  const rows = [['single', DATA.singles], ['multi', DATA.multis], ['judge', DATA.judges]].map(([t, qs]) => {
+    const recs2 = qs.map(q => state.answered[q.id]).filter(Boolean);
+    const d = recs2.length;
+    const c = recs2.filter(r => r.correct).length;
+    return `<tr><td>${TYPE_NAME[t]}</td><td>${qs.length}</td><td>${d}</td><td>${c}</td><td>${d ? Math.round(c / d * 100) + '%' : '—'}</td></tr>`;
+  }).join('');
+  document.getElementById('statBody').innerHTML = rows;
+}
+
+function syncChips() {
+  document.querySelectorAll('#typeChips .chip').forEach(b => b.classList.toggle('active', b.dataset.type === filter));
+  document.querySelectorAll('#orderChips .chip').forEach(b => b.classList.toggle('active', b.dataset.order === orderMode));
+}
+
+function mdToHtml(md) {
+  const lines = md.split('\n');
+  let html = '';
+  let inOl = false, inUl = false;
+  const close = () => { if (inOl) { html += '</ol>'; inOl = false; } if (inUl) { html += '</ul>'; inUl = false; } };
+  const bold = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line.trim()) { close(); continue; }
+    let m;
+    if ((m = line.match(/^\d+\.\s+(.*)$/))) {
+      if (!inOl) { close(); html += '<ol>'; inOl = true; }
+      html += '<li>' + bold(m[1]) + '</li>';
+      continue;
+    }
+    if ((m = line.match(/^[-•]\s+(.*)$/))) {
+      if (!inUl) { close(); html += '<ul>'; inUl = true; }
+      html += '<li>' + bold(m[1]) + '</li>';
+      continue;
+    }
+    close();
+    html += '<p>' + bold(line.trim()) + '</p>';
+  }
+  close();
+  return html;
+}
+
+function initSubjective() {
+  const box = document.getElementById('subjList');
+  box.innerHTML = DATA.subjective.map((s, i) => `
+    <div class="subj ${i === 0 ? 'open' : ''}">
+      <button class="subj-head">
+        <span class="stars">${'★'.repeat(s.stars)}${'☆'.repeat(Math.max(0, 5 - s.stars))}</span>
+        <b>预测${s.no}</b>
+        <span class="subj-title">${esc(s.title)}</span>
+        <i class="chev">▾</i>
+      </button>
+      <div class="subj-body">${mdToHtml(s.body)}</div>
+    </div>`).join('');
+  box.querySelectorAll('.subj-head').forEach(btn => {
+    btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+  });
+}
+
+function init() {
+  document.getElementById('tabs').addEventListener('click', e => {
+    const btn = e.target.closest('.tab');
+    if (btn) switchTab(btn.dataset.tab);
+  });
+  document.querySelectorAll('#typeChips .chip').forEach(b => {
+    b.addEventListener('click', () => {
+      filter = b.dataset.type;
+      state.filter = filter;
+      save();
+      syncChips();
+      buildList();
+      render();
+    });
+  });
+  document.querySelectorAll('#orderChips .chip').forEach(b => {
+    b.addEventListener('click', () => {
+      orderMode = b.dataset.order;
+      state.order = orderMode;
+      save();
+      syncChips();
+      buildList();
+      render();
+    });
+  });
+  document.getElementById('startWrong').addEventListener('click', () => {
+    if (!wrongIds().length) { alert('暂无错题，先去刷题吧。'); return; }
+    filter = 'wrong';
+    orderMode = 'seq';
+    syncChips();
+    buildList();
+    render();
+    switchTab('practice');
+  });
+  document.getElementById('resetAll').addEventListener('click', () => {
+    if (!confirm('确定重置全部答题进度与错题本？此操作不可恢复。')) return;
+    state = { answered: {}, filter: 'all', order: 'seq', pos: {} };
+    filter = 'all';
+    orderMode = 'seq';
+    save();
+    syncChips();
+    buildList();
+    render();
+    updateHeader();
+    renderStats();
+  });
+
+  syncChips();
+  initSubjective();
+  buildList();
+  render();
+  updateHeader();
+}
+
+init();
+</script>
+</body>
+</html>
